@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo Captación - Sistema REMAX IRON</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --remax-blue: #001F3F;
+            --remax-red: #E31937;
+            --gray-light: #F5F5F5;
+            --white: #FFFFFF;
+            --black: #1a1a1a;
+            --green: #00D084;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--gray-light) 0%, var(--white) 100%);
+            color: var(--black);
+            line-height: 1.6;
+        }
+
+        header {
+            background: var(--remax-blue);
+            color: var(--white);
+            padding: 20px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--remax-red);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero-module {
+            background: linear-gradient(135deg, var(--remax-blue) 0%, #003366 100%);
+            color: var(--white);
+            padding: 60px 40px;
+            border-radius: 20px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .hero-module h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero-module .icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+
+        .hero-module p {
+            font-size: 22px;
+            opacity: 0.9;
+        }
+
+        .highlight-box {
+            background: var(--remax-red);
+            color: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .highlight-box h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        /* Sources Section */
+        .sources-section {
+            margin: 60px 0;
+        }
+
+        .sources-section h2 {
+            text-align: center;
+            font-size: 36px;
+            color: var(--remax-blue);
+            margin-bottom: 40px;
+        }
+
+        .sources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .source-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .source-card:hover {
+            transform: scale(1.05);
+        }
+
+        .source-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+
+        .source-card h3 {
+            color: var(--remax-blue);
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .special-badge {
+            background: var(--green);
+            color: var(--white);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        /* Interactive Flow */
+        .flow-visual {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 50px;
+            margin: 60px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .flow-visual h2 {
+            text-align: center;
+            color: var(--remax-blue);
+            font-size: 36px;
+            margin-bottom: 50px;
+        }
+
+        .flow-stages {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: relative;
+        }
+
+        .stage {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            padding: 25px;
+            background: var(--gray-light);
+            border-radius: 12px;
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .stage:hover {
+            background: #e0e0e0;
+            transform: translateX(10px);
+        }
+
+        .stage-number {
+            background: var(--remax-red);
+            color: var(--white);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .stage-icon {
+            font-size: 40px;
+            flex-shrink: 0;
+        }
+
+        .stage-content {
+            flex: 1;
+        }
+
+        .stage-content h3 {
+            color: var(--remax-blue);
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .stage-content p {
+            color: #666;
+            font-size: 15px;
+        }
+
+        .auto-tag {
+            background: var(--green);
+            color: var(--white);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        /* Decision Tree */
+        .decision-section {
+            margin: 60px 0;
+        }
+
+        .decision-section h2 {
+            text-align: center;
+            color: var(--remax-blue);
+            font-size: 36px;
+            margin-bottom: 40px;
+        }
+
+        .decision-tree {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .decision-node {
+            background: var(--gray-light);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 5px solid var(--remax-blue);
+        }
+
+        .decision-node h3 {
+            color: var(--remax-blue);
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .decision-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .option {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .option-yes {
+            border-left-color: var(--green);
+        }
+
+        .option-no {
+            border-left-color: var(--remax-red);
+        }
+
+        .option:hover {
+            transform: translateX(5px);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .option strong {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        /* Integration highlight */
+        .integration-box {
+            background: linear-gradient(135deg, #FF9500 0%, #FF6B00 100%);
+            color: var(--white);
+            padding: 40px;
+            border-radius: 15px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .integration-box h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .integration-box .feature {
+            font-size: 20px;
+            margin: 15px 0;
+            padding: 15px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+        }
+
+        /* Benefits */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 60px 0;
+        }
+
+        .benefit-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .benefit-icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        .benefit-card h3 {
+            color: var(--remax-blue);
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        .benefit-card p {
+            color: #666;
+            font-size: 15px;
+        }
+
+        .next-module-button {
+            display: inline-block;
+            padding: 20px 50px;
+            background: var(--remax-red);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 20px;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(227, 25, 55, 0.3);
+        }
+
+        .next-module-button:hover {
+            background: var(--remax-blue);
+            transform: translateY(-3px);
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: var(--remax-blue);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            margin: 20px 10px;
+            transition: all 0.3s;
+        }
+
+        .back-button:hover {
+            background: var(--remax-red);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">← REMAX IRON Sistema</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="modulo-reclutamiento.html">Reclutamiento</a></li>
+                    <li><a href="modulo-venta.html">Venta</a></li>
+                    <li><a href="paquetes.html">Paquetes</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="hero-module">
+            <div class="icon">🏠</div>
+            <h1>Módulo 2: Captación de Propiedades</h1>
+            <p>Tu máquina automática de conseguir propiedades para vender</p>
+        </section>
+
+        <section class="highlight-box">
+            <h2>🎯 ¿Qué logra este módulo?</h2>
+            <p style="font-size: 20px;">Convertir propietarios interesados en vender en <strong>propiedades publicadas y listas para venta</strong> en tu portfolio REMAX IRON - todo con mínima intervención manual.</p>
+        </section>
+
+        <section class="sources-section">
+            <h2>📍 ¿De dónde vienen los propietarios?</h2>
+            <div class="sources-grid">
+                <div class="source-card">
+                    <div class="source-icon">📱</div>
+                    <h3>Facebook & Instagram Ads</h3>
+                    <p>"¿Quieres vender tu departamento rápido? Dame tus datos y te ayudo"</p>
+                    <p style="margin-top: 15px; color: #666;">Formularios automáticos que capturan leads directamente</p>
+                </div>
+
+                <div class="source-card">
+                    <div class="source-icon">🏘️</div>
+                    <h3>Cuánto Vale Mi Casa</h3>
+                    <p>Tu sitio web cuantovalemicasa.pe</p>
+                    <p style="margin-top: 15px; color: #666;">Sistema de tasación que genera leads calientes</p>
+                    <span class="special-badge">🔗 INTEGRACIÓN AUTOMÁTICA</span>
+                </div>
+
+                <div class="source-card">
+                    <div class="source-icon">🤝</div>
+                    <h3>Referidos de Agentes</h3>
+                    <p>Contactos personales de tus agentes activos</p>
+                    <p style="margin-top: 15px; color: #666;">Se asignan automáticamente al agente que los trajo</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="flow-visual">
+            <h2>🔄 El Proceso Completo Paso a Paso</h2>
+            <div class="flow-stages">
+                <div class="stage">
+                    <div class="stage-number">1</div>
+                    <div class="stage-icon">📝</div>
+                    <div class="stage-content">
+                        <h3>Lead ingresa al sistema <span class="auto-tag">AUTOMÁTICO</span></h3>
+                        <p>Desde Facebook, "Cuánto Vale Mi Casa" o referido de agente. Datos capturados: nombre, teléfono, email, distrito, tipo de propiedad.</p>
+                    </div>
+                </div>
+
+                <div class="stage">
+                    <div class="stage-number">2</div>
+                    <div class="stage-icon">💬</div>
+                    <div class="stage-content">
+                        <h3>WhatsApp automático con 3 preguntas filtro <span class="auto-tag">AUTOMÁTICO</span></h3>
+                        <p>¿Eres propietario directo? ¿Está en Lima? ¿Papeles en regla? El chat inteligente filtra automáticamente.</p>
+                    </div>
+                </div>
+
+                <div class="stage">
+                    <div class="stage-number">3</div>
+                    <div class="stage-icon">✅</div>
+                    <div class="stage-content">
+                        <h3>Lead calificado - Asignación a agente <span class="auto-tag">AUTOMÁTICO</span></h3>
+                        <p>El sistema asigna basado en: zona geográfica, disponibilidad, o si vino por referido de un agente específico.</p>
+                    </div>
+                </div>
+
+                <div class="stage">
+                    <div class="stage-number">4</div>
+                    <div class="stage-icon">📞</div>
+                    <div class="stage-content">
+                        <h3>Agente contacta y agenda visita</h3>
+                        <p>Tu agente llama al propietario, confirma interés y agenda visita a la propiedad. El sistema envía recordatorios automáticos.</p>
+                    </div>
+                </div>
+
+                <div class="stage">
+                    <div class="stage-number">5</div>
+                    <div class="stage-icon">🏡</div>
+                    <div class="stage-content">
+                        <h3>Visita física a la propiedad</h3>
+                        <p>Agente visita, evalúa condiciones, negocia precio. Momento crítico: expectativas de precio realistas.</p>
+                    </div>
+                </div>
+
+                <div class="stage">
+                    <div class="stage-number">6</div>
+                    <div class="stage-icon">📄</div>
+                    <div class="stage-content">
+                        <h3>Si capta: Recolección de documentos</h3>
+                        <p>Contrato de intermediación, partida registral, título de propiedad, DNI, recibos. Todo se sube al sistema.</p>
+                    </div>
+                </div>
+
+                <div class="stage">
+                    <div class="stage-number">7</div>
+                    <div class="stage-icon">🔍</div>
+                    <div class="stage-content">
+                        <h3>Proceso de aprobación interna <span class="auto-tag">CHECKLIST AUTOMÁTICO</span></h3>
+                        <p>Revisión legal (¿puede vender?), comercial (precio realista), marketing (potencial). El sistema guía el proceso.</p>
+                    </div>
+                </div>
+
+                <div class="stage">
+                    <div class="stage-number">8</div>
+                    <div class="stage-icon">🎉</div>
+                    <div class="stage-content">
+                        <h3>Propiedad activada y publicada</h3>
+                        <p>Propiedad pasa a estado "EN VENTA", disponible para promoción y para el sistema MATCH con compradores.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="decision-section">
+            <h2>🔀 ¿Qué pasa si NO se capta la propiedad?</h2>
+            <div class="decision-tree">
+                <div class="decision-node">
+                    <h3>Escenario 1: Precio Irreal</h3>
+                    <p>El propietario quiere $300K pero la propiedad vale $200K</p>
+                    <div class="decision-options">
+                        <div class="option option-yes">
+                            <strong>✅ Acción del Sistema:</strong>
+                            Educar con datos del mercado, mantener en "nurturing" con seguimiento mensual hasta que ajuste expectativas.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="decision-node">
+                    <h3>Escenario 2: No Tiene Decisión Real de Venta</h3>
+                    <p>Solo estaba "viendo opciones", no quiere vender ahora</p>
+                    <div class="decision-options">
+                        <div class="option option-no">
+                            <strong>📋 Acción del Sistema:</strong>
+                            Marcar como "SIN DECISIÓN", seguimiento trimestral automático para reactivar cuando esté listo.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="decision-node">
+                    <h3>Escenario 3: Papeles No Están en Regla</h3>
+                    <p>Problemas legales, sucesión pendiente, documentos faltantes</p>
+                    <div class="decision-options">
+                        <div class="option option-yes">
+                            <strong>🔧 Acción del Sistema:</strong>
+                            Guiar sobre qué arreglar, pausar hasta que resuelva. Seguimiento automático mensual.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 30px; color: #666; font-size: 18px;">
+                <strong>Clave:</strong> El sistema NUNCA pierde un lead. Aunque no conviertan hoy, mantiene seguimiento perpetuo.
+            </p>
+        </section>
+
+        <section class="integration-box">
+            <h2>🔗 Integración con "Cuánto Vale Mi Casa"</h2>
+            <div class="feature">
+                ✅ Cada persona que usa tu tasador automático entra directo al sistema
+            </div>
+            <div class="feature">
+                ✅ Ya vienen semi-calificados (tienen propiedad, están pensando en vender)
+            </div>
+            <div class="feature">
+                ✅ El sistema conoce el precio estimado automáticamente
+            </div>
+            <p style="margin-top: 20px; font-size: 18px;">
+                Tu lead magnet favorito ahora alimenta tu máquina de captación 24/7
+            </p>
+        </section>
+
+        <section>
+            <h2 style="text-align: center; color: var(--remax-blue); font-size: 36px; margin-bottom: 40px;">
+                💎 Beneficios para Ti
+            </h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">⏰</div>
+                    <h3>24/7 Captando</h3>
+                    <p>El sistema trabaja día y noche. Incluso a las 2am, si alguien llena el formulario, recibe respuesta inmediata.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎯</div>
+                    <h3>Solo Leads Calificados</h3>
+                    <p>Tus agentes solo atienden personas que pasaron los 3 filtros. Cero pérdida de tiempo.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">📊</div>
+                    <h3>Portfolio Creciente</h3>
+                    <p>Cada propiedad captada aumenta tu inventario. Más inventario = más ventas posibles.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">🔄</div>
+                    <h3>Cero Leads Perdidos</h3>
+                    <p>Seguimiento perpetuo automático. Aunque no capten hoy, el sistema los reactiva mes a mes.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">📈</div>
+                    <h3>Escalable</h3>
+                    <p>Puedes manejar 10 leads por semana o 100. El sistema escala sin necesitar más personal.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">🤖</div>
+                    <h3>Asignación Inteligente</h3>
+                    <p>Cada lead va al agente perfecto: por zona, por disponibilidad, o por referencia personal.</p>
+                </div>
+            </div>
+        </section>
+
+        <section style="text-align: center; margin: 60px 0;">
+            <h2 style="color: var(--remax-blue); margin-bottom: 30px;">Siguiente: Ver cómo vendes esas propiedades</h2>
+            <a href="modulo-venta.html" class="next-module-button">
+                Módulo 3: Venta a Compradores →
+            </a>
+        </section>
+
+        <div style="text-align: center; margin: 40px 0;">
+            <a href="modulo-reclutamiento.html" class="back-button">← Módulo Anterior</a>
+            <a href="index.html" class="back-button">Volver al Inicio</a>
+        </div>
+    </div>
+
+    <script>
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '0';
+                    entry.target.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        entry.target.style.transition = 'all 0.6s ease-out';
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, 100);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.stage, .source-card, .benefit-card').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

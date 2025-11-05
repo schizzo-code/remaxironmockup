@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema MATCH - REMAX IRON</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --remax-blue: #001F3F;
+            --remax-red: #E31937;
+            --gray-light: #F5F5F5;
+            --white: #FFFFFF;
+            --black: #1a1a1a;
+            --green: #00D084;
+            --orange: #FF9500;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--gray-light) 0%, var(--white) 100%);
+            color: var(--black);
+            line-height: 1.6;
+        }
+
+        header {
+            background: var(--remax-blue);
+            color: var(--white);
+            padding: 20px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--remax-red);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--orange) 0%, #FF6B00 100%);
+            color: var(--white);
+            padding: 80px 40px;
+            border-radius: 20px;
+            margin: 40px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "🎯";
+            position: absolute;
+            font-size: 300px;
+            opacity: 0.1;
+            right: -80px;
+            top: -100px;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .hero p {
+            font-size: 24px;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .golden-rule {
+            background: var(--remax-red);
+            color: var(--white);
+            padding: 50px;
+            border-radius: 15px;
+            margin: 60px 0;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(227, 25, 55, 0.3);
+        }
+
+        .golden-rule h2 {
+            font-size: 40px;
+            margin-bottom: 25px;
+        }
+
+        .golden-rule .big-quote {
+            font-size: 28px;
+            font-style: italic;
+            font-weight: bold;
+            padding: 30px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 12px;
+            border-left: 6px solid var(--white);
+        }
+
+        /* Criteria Section */
+        .criteria-section {
+            margin: 60px 0;
+        }
+
+        .criteria-section h2 {
+            text-align: center;
+            color: var(--remax-blue);
+            font-size: 36px;
+            margin-bottom: 40px;
+        }
+
+        .criteria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .criteria-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 35px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-top: 6px solid var(--orange);
+            transition: transform 0.3s;
+        }
+
+        .criteria-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .criteria-number {
+            background: var(--orange);
+            color: var(--white);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .criteria-card h3 {
+            color: var(--remax-blue);
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .criteria-card p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .priority-badge {
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        .high-priority {
+            background: var(--remax-red);
+            color: var(--white);
+        }
+
+        .medium-priority {
+            background: var(--orange);
+            color: var(--white);
+        }
+
+        .low-priority {
+            background: var(--green);
+            color: var(--white);
+        }
+
+        /* Interactive Example */
+        .interactive-demo {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 50px;
+            margin: 60px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .interactive-demo h2 {
+            text-align: center;
+            color: var(--remax-blue);
+            font-size: 36px;
+            margin-bottom: 50px;
+        }
+
+        .demo-flow {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .demo-step {
+            margin: 30px 0;
+            padding: 30px;
+            background: var(--gray-light);
+            border-radius: 12px;
+            border-left: 6px solid var(--remax-blue);
+        }
+
+        .demo-step.interested {
+            background: #e6f3ff;
+            border-left-color: var(--remax-blue);
+        }
+
+        .demo-step.rejected {
+            background: #ffe6e6;
+            border-left-color: var(--remax-red);
+        }
+
+        .demo-step.match-activated {
+            background: #fff4e6;
+            border-left-color: var(--orange);
+        }
+
+        .demo-step.alternatives {
+            background: #e6ffe6;
+            border-left-color: var(--green);
+        }
+
+        .demo-step.result {
+            background: #f0fff8;
+            border-left-color: var(--green);
+            border-width: 6px;
+        }
+
+        .demo-step h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--remax-blue);
+        }
+
+        .demo-step p {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .property-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .property-option {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border: 3px solid var(--green);
+            transition: transform 0.3s;
+        }
+
+        .property-option:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .property-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .property-details {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .property-price {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--remax-red);
+            margin-top: 10px;
+        }
+
+        /* Algorithm Visualization */
+        .algorithm-box {
+            background: linear-gradient(135deg, var(--remax-blue) 0%, #003366 100%);
+            color: var(--white);
+            padding: 50px;
+            border-radius: 20px;
+            margin: 60px 0;
+        }
+
+        .algorithm-box h2 {
+            font-size: 36px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .algorithm-steps {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .algo-step {
+            background: rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .algo-step strong {
+            font-size: 18px;
+            display: block;
+            margin-bottom: 10px;
+            color: var(--orange);
+        }
+
+        .algo-step p {
+            font-size: 16px;
+            opacity: 0.95;
+        }
+
+        /* Benefits */
+        .benefits-section {
+            margin: 60px 0;
+        }
+
+        .benefits-section h2 {
+            text-align: center;
+            color: var(--remax-blue);
+            font-size: 36px;
+            margin-bottom: 40px;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .benefit-card {
+            background: var(--white);
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .benefit-card:hover {
+            transform: scale(1.05);
+        }
+
+        .benefit-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .benefit-card h3 {
+            color: var(--remax-blue);
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        .benefit-card p {
+            color: #666;
+            font-size: 15px;
+        }
+
+        .nav-buttons {
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 18px 40px;
+            margin: 10px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            transition: all 0.3s;
+        }
+
+        .button-primary {
+            background: var(--remax-red);
+            color: var(--white);
+            box-shadow: 0 5px 20px rgba(227, 25, 55, 0.3);
+        }
+
+        .button-primary:hover {
+            background: var(--remax-blue);
+            transform: translateY(-3px);
+        }
+
+        .button-secondary {
+            background: var(--remax-blue);
+            color: var(--white);
+        }
+
+        .button-secondary:hover {
+            background: var(--remax-red);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">← REMAX IRON Sistema</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="modulo-venta.html">Venta</a></li>
+                    <li><a href="onboarding.html">Onboarding</a></li>
+                    <li><a href="paquetes.html">Paquetes</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="hero">
+            <h1>🎯 Sistema MATCH</h1>
+            <p>Tu arma secreta para NUNCA perder un comprador calificado por no tener la propiedad exacta</p>
+        </section>
+
+        <section class="golden-rule">
+            <h2>⭐ La Regla de Oro</h2>
+            <div class="big-quote">
+                "NUNCA perder un lead calificado (con crédito aprobado y decisión de compra) por no tener la propiedad exacta"
+            </div>
+            <p style="font-size: 20px; margin-top: 30px; opacity: 0.95;">
+                Si un comprador tiene el dinero listo y quiere comprar, pero tu primera opción no le convence, el sistema automáticamente le ofrece alternativas hasta encontrar el match perfecto.
+            </p>
+        </section>
+
+        <section class="criteria-section">
+            <h2>🔍 ¿Cómo Encuentra Alternativas?</h2>
+            <p style="text-align: center; margin-bottom: 40px; font-size: 18px; color: #666;">
+                El sistema analiza 3 criterios principales para encontrar el match perfecto
+            </p>
+
+            <div class="criteria-grid">
+                <div class="criteria-card">
+                    <div class="criteria-number">1</div>
+                    <h3>Ubicación</h3>
+                    <p>
+                        El factor MÁS importante. Busca propiedades en:
+                        <br><br>
+                        ✅ El mismo distrito<br>
+                        ✅ Distritos colindantes<br>
+                        ✅ Zona similar
+                    </p>
+                    <span class="priority-badge high-priority">🔥 PRIORIDAD ALTA</span>
+                </div>
+
+                <div class="criteria-card">
+                    <div class="criteria-number">2</div>
+                    <h3>Precio</h3>
+                    <p>
+                        El segundo factor más importante. Busca en un rango de:
+                        <br><br>
+                        💰 ±20% del precio de la propiedad original
+                        <br><br>
+                        Ejemplo: Si vio una de $200K, busca entre $160K - $240K
+                    </p>
+                    <span class="priority-badge medium-priority">📊 PRIORIDAD MEDIA</span>
+                </div>
+
+                <div class="criteria-card">
+                    <div class="criteria-number">3</div>
+                    <h3>Características</h3>
+                    <p>
+                        Ajusta según las necesidades expresadas:
+                        <br><br>
+                        🛏️ Número de dormitorios<br>
+                        📏 Metraje aproximado<br>
+                        🏠 Tipo de propiedad (depa/casa)
+                    </p>
+                    <span class="priority-badge low-priority">✨ AJUSTE FINO</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="interactive-demo">
+            <h2>📱 Ejemplo en Acción</h2>
+            <div class="demo-flow">
+                <div class="demo-step interested">
+                    <h3>👤 Comprador: Roberto</h3>
+                    <p>
+                        <strong>Busca:</strong> Departamento 3 dormitorios en Surco, presupuesto $200K<br>
+                        <strong>Situación:</strong> Tiene crédito aprobado, quiere comprar en 2 meses
+                    </p>
+                </div>
+
+                <div style="text-align: center; font-size: 40px; margin: 20px 0; color: var(--remax-red);">↓</div>
+
+                <div class="demo-step">
+                    <h3>🏠 Visita Propiedad A</h3>
+                    <p>
+                        Departamento 3 dormitorios, Surco, $200K<br>
+                        Roberto visita, le gusta la ubicación pero...
+                    </p>
+                </div>
+
+                <div style="text-align: center; font-size: 40px; margin: 20px 0; color: var(--remax-red);">↓</div>
+
+                <div class="demo-step rejected">
+                    <h3>❌ Feedback de Roberto</h3>
+                    <p>
+                        "Me gusta la zona, pero es demasiado grande para nosotros. Somos solo 2 personas. Preferimos algo de 2 dormitorios."
+                    </p>
+                </div>
+
+                <div style="text-align: center; font-size: 40px; margin: 20px 0; color: var(--orange);">↓</div>
+
+                <div class="demo-step match-activated">
+                    <h3>🤖 Sistema MATCH Activado</h3>
+                    <p>
+                        El agente marca en el sistema: "No le convenció - Busca menos dormitorios"<br>
+                        El sistema automáticamente busca en el portfolio propiedades que cumplan:
+                    </p>
+                    <ul style="margin: 15px 0 0 30px; font-size: 15px;">
+                        <li>✅ Ubicación: Surco + distritos cercanos (San Borja, Miraflores, Magdalena)</li>
+                        <li>✅ Dormitorios: 2 (en vez de 3)</li>
+                        <li>✅ Precio: $160K - $220K (±20% de $200K)</li>
+                    </ul>
+                </div>
+
+                <div style="text-align: center; font-size: 40px; margin: 20px 0; color: var(--green);">↓</div>
+
+                <div class="demo-step alternatives">
+                    <h3>📲 WhatsApp Automático a Roberto</h3>
+                    <p style="font-style: italic; background: rgba(220, 248, 198, 0.5); padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                        "Hola Roberto, gracias por visitarnos hoy. Entendemos que buscas algo más pequeño. Tenemos 4 opciones de 2 dormitorios que podrían interesarte:"
+                    </p>
+
+                    <div class="property-options">
+                        <div class="property-option">
+                            <div class="property-icon">🏠</div>
+                            <strong>Surco</strong>
+                            <div class="property-details">2 dorm, 90m²</div>
+                            <div class="property-price">$160K</div>
+                        </div>
+
+                        <div class="property-option">
+                            <div class="property-icon">🏠</div>
+                            <strong>San Borja</strong>
+                            <div class="property-details">2 dorm, 85m²</div>
+                            <div class="property-price">$155K</div>
+                        </div>
+
+                        <div class="property-option">
+                            <div class="property-icon">🏠</div>
+                            <strong>Surco</strong>
+                            <div class="property-details">2 dorm, 100m²</div>
+                            <div class="property-price">$170K</div>
+                        </div>
+
+                        <div class="property-option">
+                            <div class="property-icon">🏠</div>
+                            <strong>Miraflores</strong>
+                            <div class="property-details">2 dorm, 95m²</div>
+                            <div class="property-price">$185K</div>
+                        </div>
+                    </div>
+
+                    <p style="font-style: italic; margin-top: 15px; text-align: center;">
+                        "¿Cuál te gustaría conocer?"
+                    </p>
+                </div>
+
+                <div style="text-align: center; font-size: 40px; margin: 20px 0; color: var(--green);">↓</div>
+
+                <div class="demo-step result">
+                    <h3>🎉 Resultado</h3>
+                    <p>
+                        <strong>Roberto responde:</strong> "El de San Borja me interesa mucho!"<br><br>
+                        El sistema notifica al agente → Se agenda nueva visita → Venta potencialmente salvada
+                    </p>
+                    <div style="background: var(--green); color: white; padding: 20px; border-radius: 10px; margin-top: 20px; text-align: center; font-size: 18px; font-weight: bold;">
+                        ✅ Sin Sistema MATCH: Lead perdido<br>
+                        ✅ Con Sistema MATCH: Segunda oportunidad de venta
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="algorithm-box">
+            <h2>⚙️ Cómo Funciona por Dentro (Simplificado)</h2>
+            <div class="algorithm-steps">
+                <div class="algo-step">
+                    <strong>PASO 1: Detectar No-Match</strong>
+                    <p>Agente marca en el sistema que la propiedad no convenció y por qué (muy grande/muy chica/muy cara/ubicación no ideal/etc.)</p>
+                </div>
+
+                <div class="algo-step">
+                    <strong>PASO 2: Analizar Perfil del Comprador</strong>
+                    <p>El sistema revisa qué está buscando realmente: ubicación deseada, rango de precio, características importantes</p>
+                </div>
+
+                <div class="algo-step">
+                    <strong>PASO 3: Buscar en Portfolio</strong>
+                    <p>Consulta tu base de propiedades disponibles y busca las que mejor hacen match con el perfil ajustado</p>
+                </div>
+
+                <div class="algo-step">
+                    <strong>PASO 4: Ordenar por Relevancia</strong>
+                    <p>Prioriza por: 1) Ubicación, 2) Precio, 3) Características. Selecciona las mejores 3-5 opciones</p>
+                </div>
+
+                <div class="algo-step">
+                    <strong>PASO 5: Enviar Automáticamente</strong>
+                    <p>WhatsApp automático al comprador con las alternativas, links a las propiedades y llamado a acción</p>
+                </div>
+
+                <div class="algo-step">
+                    <strong>PASO 6: Seguimiento</strong>
+                    <p>Si no responde en 48h, recordatorio. Si responde interesado, notifica al agente para agendar visita</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="benefits-section">
+            <h2>💎 Lo Que Ganas con Sistema MATCH</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">💰</div>
+                    <h3>Maximiza Conversión</h3>
+                    <p>Recupera ventas que se habrían perdido. Cada lead calificado tiene múltiples oportunidades de convertir.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎯</div>
+                    <h3>Aprovecha Tu Inventario</h3>
+                    <p>Todas tus propiedades captadas trabajan para ti. Una propiedad puede ser la alternativa perfecta para alguien.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">⚡</div>
+                    <h3>100% Automático</h3>
+                    <p>El agente solo marca "no le convenció" y el sistema hace todo lo demás. Cero trabajo manual.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">🤖</div>
+                    <h3>Inteligente</h3>
+                    <p>No solo envía propiedades al azar. Analiza qué falló y busca alternativas que resuelvan ese problema específico.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">📈</div>
+                    <h3>ROI de Marketing Aumenta</h3>
+                    <p>Cada peso invertido en publicidad se aprovecha al máximo. Un lead puede convertir aunque la primera propiedad no funcione.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">😊</div>
+                    <h3>Mejor Experiencia de Cliente</h3>
+                    <p>El comprador siente que realmente lo están ayudando a encontrar lo que busca, no solo a vender lo que hay.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="nav-buttons">
+            <h2 style="color: var(--remax-blue); margin-bottom: 30px;">Explora Más Características</h2>
+            <a href="onboarding.html" class="button button-primary">
+                🚀 Ver Onboarding de Agentes
+            </a>
+            <a href="casos-uso.html" class="button button-primary">
+                📱 Ver Casos de Uso Completos
+            </a>
+            <br><br>
+            <a href="modulo-venta.html" class="button button-secondary">← Volver a Módulo Venta</a>
+            <a href="index.html" class="button button-secondary">Inicio</a>
+        </section>
+    </div>
+
+    <script>
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '0';
+                    entry.target.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        entry.target.style.transition = 'all 0.6s ease-out';
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, 100);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.criteria-card, .demo-step, .benefit-card').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

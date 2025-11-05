@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo Reclutamiento - Sistema REMAX IRON</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --remax-blue: #001F3F;
+            --remax-red: #E31937;
+            --gray-light: #F5F5F5;
+            --white: #FFFFFF;
+            --black: #1a1a1a;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--gray-light) 0%, var(--white) 100%);
+            color: var(--black);
+            line-height: 1.6;
+        }
+
+        header {
+            background: var(--remax-blue);
+            color: var(--white);
+            padding: 20px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--remax-red);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero-module {
+            background: linear-gradient(135deg, var(--remax-blue) 0%, #003366 100%);
+            color: var(--white);
+            padding: 60px 40px;
+            border-radius: 20px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .hero-module h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero-module .icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+
+        .hero-module p {
+            font-size: 22px;
+            opacity: 0.9;
+        }
+
+        .objetivo-box {
+            background: var(--remax-red);
+            color: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .objetivo-box h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .objetivo-box p {
+            font-size: 20px;
+        }
+
+        /* Flow visualization */
+        .flow-section {
+            margin: 60px 0;
+        }
+
+        .flow-section h2 {
+            text-align: center;
+            font-size: 36px;
+            color: var(--remax-blue);
+            margin-bottom: 50px;
+        }
+
+        .flow-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .flow-step {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .flow-step:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 30px rgba(227, 25, 55, 0.2);
+        }
+
+        .step-number {
+            background: var(--remax-red);
+            color: var(--white);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-content h3 {
+            color: var(--remax-blue);
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .step-content p {
+            font-size: 16px;
+            color: #666;
+        }
+
+        .step-icon {
+            font-size: 50px;
+            flex-shrink: 0;
+        }
+
+        .automation-badge {
+            background: #00D084;
+            color: var(--white);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .human-badge {
+            background: #FF9500;
+            color: var(--white);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        /* WhatsApp mockup */
+        .whatsapp-demo {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .whatsapp-demo h2 {
+            text-align: center;
+            color: var(--remax-blue);
+            font-size: 32px;
+            margin-bottom: 30px;
+        }
+
+        .phone-mockup {
+            max-width: 400px;
+            margin: 0 auto;
+            background: #E5DDD5;
+            border-radius: 30px;
+            padding: 50px 20px 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .phone-header {
+            background: #075E54;
+            color: white;
+            padding: 15px;
+            border-radius: 10px 10px 0 0;
+            margin: -30px -10px 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .message {
+            margin: 15px 0;
+            padding: 12px 15px;
+            border-radius: 10px;
+            max-width: 80%;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message-bot {
+            background: white;
+            margin-right: auto;
+            border-radius: 10px 10px 10px 0;
+        }
+
+        .message-user {
+            background: #DCF8C6;
+            margin-left: auto;
+            border-radius: 10px 10px 0 10px;
+        }
+
+        .message-time {
+            font-size: 11px;
+            color: #999;
+            text-align: right;
+            margin-top: 5px;
+        }
+
+        /* Questions section */
+        .questions-section {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .questions-section h2 {
+            color: var(--remax-blue);
+            font-size: 32px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .question-card {
+            background: var(--gray-light);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid var(--remax-red);
+            transition: transform 0.3s;
+        }
+
+        .question-card:hover {
+            transform: translateX(10px);
+        }
+
+        .question-card h3 {
+            color: var(--remax-blue);
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        .question-card .why {
+            background: var(--white);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-style: italic;
+            color: #555;
+        }
+
+        /* Timeline */
+        .timeline-section {
+            margin: 60px 0;
+        }
+
+        .timeline-section h2 {
+            text-align: center;
+            color: var(--remax-blue);
+            font-size: 32px;
+            margin-bottom: 40px;
+        }
+
+        .timeline {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .timeline-item {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .timeline-item:hover {
+            transform: scale(1.05);
+        }
+
+        .timeline-title {
+            background: var(--remax-red);
+            color: var(--white);
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .timeline-content {
+            font-size: 15px;
+            color: #666;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: var(--remax-blue);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            margin: 20px 0;
+            transition: all 0.3s;
+        }
+
+        .back-button:hover {
+            background: var(--remax-red);
+            transform: translateX(-5px);
+        }
+
+        .next-module {
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .next-module-button {
+            display: inline-block;
+            padding: 20px 50px;
+            background: var(--remax-red);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 20px;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(227, 25, 55, 0.3);
+        }
+
+        .next-module-button:hover {
+            background: var(--remax-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 31, 63, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">← REMAX IRON Sistema</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="modulo-captacion.html">Captación</a></li>
+                    <li><a href="modulo-venta.html">Venta</a></li>
+                    <li><a href="paquetes.html">Paquetes</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="hero-module">
+            <div class="icon">👥</div>
+            <h1>Módulo 1: Reclutamiento de Agentes</h1>
+            <p>Tu máquina automática de encontrar y convertir talento inmobiliario</p>
+        </section>
+
+        <section class="objetivo-box">
+            <h2>🎯 ¿Qué logra este módulo?</h2>
+            <p>Convertir personas interesadas en trabajar como agentes inmobiliarios en <strong>miembros productivos</strong> de tu equipo REMAX IRON - todo automáticamente.</p>
+        </section>
+
+        <section class="flow-section">
+            <h2>Cómo Funciona el Proceso Completo</h2>
+            <div class="flow-container">
+                <div class="flow-step">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">📱</div>
+                    <div class="step-content">
+                        <h3>Una persona ve tu anuncio</h3>
+                        <p>En Facebook o Instagram: "¿Aburrida de estar en casa? Lanza tu negocio inmobiliario con REMAX"</p>
+                        <p>Deja sus datos en el formulario</p>
+                        <span class="automation-badge">🤖 100% AUTOMÁTICO</span>
+                    </div>
+                </div>
+
+                <div class="flow-step">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">💬</div>
+                    <div class="step-content">
+                        <h3>El sistema le envía un WhatsApp inmediato</h3>
+                        <p>"Hola María, gracias por tu interés. Te haré 3 preguntas rápidas para ver si calzas con lo que buscamos..."</p>
+                        <span class="automation-badge">🤖 CHAT CON IA - SIN HUMANOS</span>
+                    </div>
+                </div>
+
+                <div class="flow-step">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">✅</div>
+                    <div class="step-content">
+                        <h3>Filtra con 3 preguntas clave</h3>
+                        <p>¿Estás trabajando ahora? ¿Vives en Lima? ¿Entiendes que es 100% comisiones?</p>
+                        <p><strong>Si pasa las 3 preguntas:</strong> El sistema la marca como "CALIFICADA"</p>
+                        <span class="automation-badge">🤖 FILTRO INTELIGENTE</span>
+                    </div>
+                </div>
+
+                <div class="flow-step">
+                    <div class="step-number">4</div>
+                    <div class="step-icon">👨‍💼</div>
+                    <div class="step-content">
+                        <h3>Notificación al Lead Manager (Diego)</h3>
+                        <p>Te llega un aviso: "Lead calificada: María García. Lista para contacto personal."</p>
+                        <span class="human-badge">👤 HUMANO (TÚ)</span>
+                    </div>
+                </div>
+
+                <div class="flow-step">
+                    <div class="step-number">5</div>
+                    <div class="step-icon">📅</div>
+                    <div class="step-content">
+                        <h3>Contacto personal y agendamiento</h3>
+                        <p>Tú o tu asistente la contactan: "Hola María, te invitamos a una charla informativa"</p>
+                        <p>El sistema agenda la entrevista en tu calendario</p>
+                        <span class="human-badge">👤 CONTACTO HUMANO</span>
+                    </div>
+                </div>
+
+                <div class="flow-step">
+                    <div class="step-number">6</div>
+                    <div class="step-icon">⏰</div>
+                    <div class="step-content">
+                        <h3>Recordatorios automáticos</h3>
+                        <p>El sistema envía recordatorios a María: 24 horas antes, 2 horas antes</p>
+                        <p><strong>Si no asiste:</strong> Automáticamente reagenda o reactiva seguimiento</p>
+                        <span class="automation-badge">🤖 RECORDATORIOS AUTOMÁTICOS</span>
+                    </div>
+                </div>
+
+                <div class="flow-step">
+                    <div class="step-number">7</div>
+                    <div class="step-icon">🎉</div>
+                    <div class="step-content">
+                        <h3>Conversión a Agente Activo</h3>
+                        <p>Si María calza, paga matrícula y se une al equipo</p>
+                        <p>El sistema la registra como "AGENTE ACTIVO" e inicia su onboarding</p>
+                        <span class="human-badge">👤 DECISIÓN HUMANA + 🤖 AUTOMATIZACIÓN</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="questions-section">
+            <h2>Las 3 Preguntas Filtro Automáticas</h2>
+            <p style="text-align: center; margin-bottom: 30px; color: #666; font-size: 18px;">
+                El chat inteligente filtra automáticamente usando estas preguntas
+            </p>
+
+            <div class="question-card">
+                <h3>❓ Pregunta 1: ¿Estás trabajando actualmente como empleado dependiente?</h3>
+                <div class="why">
+                    <strong>Por qué:</strong> Personas con empleo fijo rara vez funcionan en modelo 100% comisiones. El sistema descarta o educa sobre el modelo de negocio.
+                </div>
+            </div>
+
+            <div class="question-card">
+                <h3>❓ Pregunta 2: ¿Te encuentras en la ciudad de Lima?</h3>
+                <div class="why">
+                    <strong>Por qué:</strong> Fuera de Lima no hay operaciones. El sistema descarta automáticamente.
+                </div>
+            </div>
+
+            <div class="question-card">
+                <h3>❓ Pregunta 3: ¿Entiendes que NO es un empleo sino trabajo 100% por comisiones?</h3>
+                <div class="why">
+                    <strong>Por qué:</strong> Evita expectativas incorrectas. Si hay dudas, el sistema educa o descalifica.
+                </div>
+            </div>
+        </section>
+
+        <section class="whatsapp-demo">
+            <h2>💬 Ejemplo del Chat Automático</h2>
+            <div class="phone-mockup">
+                <div class="phone-header">
+                    WhatsApp - REMAX IRON
+                </div>
+
+                <div class="message message-bot">
+                    ¡Hola María! Gracias por tu interés en trabajar con REMAX 🏠
+                    <div class="message-time">10:02</div>
+                </div>
+
+                <div class="message message-bot">
+                    Te haré 3 preguntas rápidas para ver si calzamos. ¿Te parece?
+                    <div class="message-time">10:02</div>
+                </div>
+
+                <div class="message message-user">
+                    Sí, adelante
+                    <div class="message-time">10:03</div>
+                </div>
+
+                <div class="message message-bot">
+                    Perfecto. Primera pregunta: ¿Estás trabajando actualmente como empleado dependiente?
+                    <div class="message-time">10:03</div>
+                </div>
+
+                <div class="message message-user">
+                    No, dejé mi trabajo hace 2 meses
+                    <div class="message-time">10:04</div>
+                </div>
+
+                <div class="message message-bot">
+                    Excelente ✅ Segunda pregunta: ¿Vives en Lima?
+                    <div class="message-time">10:04</div>
+                </div>
+
+                <div class="message message-user">
+                    Sí, en San Miguel
+                    <div class="message-time">10:05</div>
+                </div>
+
+                <div class="message message-bot">
+                    ¡Perfecto! ✅ Última pregunta: Este es un modelo de trabajo 100% por comisiones (no es un empleo). ¿Lo entiendes y te interesa igual?
+                    <div class="message-time">10:05</div>
+                </div>
+
+                <div class="message message-user">
+                    Sí, me interesa justamente por eso
+                    <div class="message-time">10:06</div>
+                </div>
+
+                <div class="message message-bot">
+                    🎉 ¡Excelente María! Pasaste el filtro inicial. Mi colega Diego te contactará en las próximas 2 horas para agendar una charla informativa. ¡Bienvenida!
+                    <div class="message-time">10:06</div>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 30px; color: #666; font-size: 16px;">
+                <strong>Todo esto sucede automáticamente, sin que tú hagas nada.</strong><br>
+                Solo intervienes cuando el lead ya está calificado.
+            </p>
+        </section>
+
+        <section class="timeline-section">
+            <h2>⏱️ Seguimiento Automático Perpetuo</h2>
+            <p style="text-align: center; margin-bottom: 30px; color: #666; font-size: 18px;">
+                Si una persona califica pero no convierte de inmediato, el sistema NUNCA la olvida:
+            </p>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-title">Días 1-5</div>
+                    <div class="timeline-content">
+                        📱 Contacto diario<br>
+                        Recordatorios, información adicional, llamados a acción
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-title">Semanas 2-5</div>
+                    <div class="timeline-content">
+                        📅 Contacto semanal<br>
+                        Casos de éxito, testimonios, mantener interés vivo
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-title">Mes 2+</div>
+                    <div class="timeline-content">
+                        🔄 Contacto mensual<br>
+                        Seguimiento indefinido hasta que se una o se bloquee
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-title">Nunca se pierde</div>
+                    <div class="timeline-content">
+                        ✅ Cero leads olvidados<br>
+                        El sistema hace seguimiento perpetuo automáticamente
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="next-module">
+            <h2 style="color: var(--remax-blue); margin-bottom: 30px;">¿Listo para ver el siguiente módulo?</h2>
+            <a href="modulo-captacion.html" class="next-module-button">
+                Módulo 2: Captación de Propiedades →
+            </a>
+        </section>
+
+        <div style="text-align: center; margin: 40px 0;">
+            <a href="index.html" class="back-button">← Volver al Inicio</a>
+        </div>
+    </div>
+
+    <script>
+        // Animate flow steps on scroll
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '0';
+                    entry.target.style.transform = 'translateX(-50px)';
+                    setTimeout(() => {
+                        entry.target.style.transition = 'all 0.6s ease-out';
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateX(0)';
+                    }, 100);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.flow-step').forEach((el, index) => {
+            setTimeout(() => {
+                observer.observe(el);
+            }, index * 100);
+        });
+
+        // Animate WhatsApp messages
+        const messages = document.querySelectorAll('.message');
+        messages.forEach((msg, index) => {
+            msg.style.opacity = '0';
+            setTimeout(() => {
+                msg.style.transition = 'all 0.5s ease-out';
+                msg.style.opacity = '1';
+            }, index * 300 + 1000);
+        });
+    </script>
+</body>
+</html>
