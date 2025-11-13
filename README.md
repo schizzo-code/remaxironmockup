@@ -4,6 +4,7 @@ Conjunto de páginas HTML navegables que explican visualmente el sistema propues
 
 ## 📁 Archivos Incluidos
 
+### Páginas HTML Interactivas:
 - **index.html** - Página principal con overview del sistema
 - **modulo-reclutamiento.html** - Explicación del Módulo de Reclutamiento
 - **modulo-captacion.html** - Explicación del Módulo de Captación
@@ -12,6 +13,11 @@ Conjunto de páginas HTML navegables que explican visualmente el sistema propues
 - **onboarding.html** - Proceso de Onboarding Mágico
 - **casos-uso.html** - Ejemplos prácticos paso a paso
 - **paquetes.html** - Opciones de paquetes y precios
+- **entregables-detallados.html** - ⭐ **NUEVO:** Clarificación detallada de entregables por paquete
+
+### Documentos de Clarificación (Para el Cliente):
+- **ENTREGABLES-POR-PAQUETE.md** - ⭐ **NUEVO:** Documento completo y detallado (lenguaje NO técnico)
+- **RESUMEN-EJECUTIVO-PAQUETES.md** - ⭐ **NUEVO:** Resumen ejecutivo de 1 página
 
 ## 🚀 Cómo Usar
 
@@ -47,6 +53,17 @@ Conjunto de páginas HTML navegables que explican visualmente el sistema propues
 4. **onboarding.html** - Diferenciador único
 5. **casos-uso.html** - Ver todo en acción
 6. **paquetes.html** - Opciones y precios
+7. **entregables-detallados.html** - ⭐ Clarificación de entregables (si hay dudas)
+
+## 📄 Para Aclarar Dudas sobre Entregables
+
+Si el cliente tiene dudas sobre qué recibe exactamente en cada paquete:
+
+1. **Enviar primero:** `RESUMEN-EJECUTIVO-PAQUETES.md` (1 página, rápido de leer)
+2. **Si necesita más detalle:** `ENTREGABLES-POR-PAQUETE.md` (documento completo)
+3. **Para presentación visual:** Abrir `entregables-detallados.html` en navegador
+
+**Todos los documentos están en lenguaje NO técnico**, diseñados para personas sin conocimientos de programación.
 
 ## 🎯 Objetivo
 

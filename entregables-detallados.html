@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entregables Detallados por Paquete - REMAX IRON</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --remax-blue: #001F3F;
+            --remax-red: #E31937;
+            --gray-light: #F5F5F5;
+            --white: #FFFFFF;
+            --black: #1a1a1a;
+            --green: #00D084;
+            --gold: #FFD700;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--gray-light) 0%, var(--white) 100%);
+            color: var(--black);
+            line-height: 1.6;
+        }
+
+        header {
+            background: var(--remax-blue);
+            color: var(--white);
+            padding: 20px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--remax-red);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--remax-blue) 0%, #003366 100%);
+            color: var(--white);
+            padding: 60px 40px;
+            border-radius: 20px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 22px;
+            opacity: 0.95;
+        }
+
+        .intro-box {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 15px;
+            margin: 40px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .intro-box h2 {
+            color: var(--remax-blue);
+            margin-bottom: 20px;
+            font-size: 32px;
+        }
+
+        .intro-box p {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .package-section {
+            background: var(--white);
+            padding: 50px;
+            border-radius: 20px;
+            margin: 40px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .package-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 4px solid var(--remax-blue);
+        }
+
+        .package-header.mvp {
+            border-bottom-color: var(--gold);
+        }
+
+        .package-header.complete {
+            border-bottom-color: var(--remax-red);
+        }
+
+        .package-header.infra {
+            border-bottom-color: #666;
+        }
+
+        .package-title {
+            font-size: 36px;
+            color: var(--remax-blue);
+            font-weight: bold;
+        }
+
+        .package-price {
+            font-size: 48px;
+            font-weight: bold;
+            color: var(--remax-red);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .badge-recommended {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        .badge-best {
+            background: var(--remax-red);
+            color: var(--white);
+        }
+
+        .badge-warning {
+            background: #ff9800;
+            color: var(--white);
+        }
+
+        .deliverables-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .deliverable-card {
+            background: var(--gray-light);
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 5px solid var(--remax-blue);
+        }
+
+        .deliverable-card h3 {
+            color: var(--remax-blue);
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        .deliverable-card p {
+            color: #555;
+            font-size: 15px;
+            margin-bottom: 10px;
+        }
+
+        .deliverable-list {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .deliverable-list li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .deliverable-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--green);
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .deliverable-list.no-list li:before {
+            content: "✗";
+            color: #ccc;
+        }
+
+        .module-options {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            padding: 30px;
+            border-radius: 12px;
+            margin: 25px 0;
+        }
+
+        .module-options h3 {
+            color: var(--remax-blue);
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 24px;
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .module-card-small {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .module-card-small .icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .module-card-small h4 {
+            color: var(--remax-blue);
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .module-card-small p {
+            font-size: 13px;
+            color: #666;
+        }
+
+        .highlight-box {
+            background: var(--green);
+            color: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .highlight-box h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .highlight-box p {
+            font-size: 18px;
+        }
+
+        .costs-table {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 30px 0;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .costs-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .costs-table th {
+            background: var(--remax-blue);
+            color: var(--white);
+            padding: 15px;
+            text-align: left;
+            font-size: 16px;
+        }
+
+        .costs-table td {
+            padding: 15px;
+            border-bottom: 1px solid var(--gray-light);
+            font-size: 15px;
+        }
+
+        .costs-table tr:last-child td {
+            border-bottom: none;
+            font-weight: bold;
+            background: var(--gray-light);
+        }
+
+        .button {
+            display: inline-block;
+            padding: 18px 40px;
+            margin: 10px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            transition: all 0.3s;
+        }
+
+        .button-primary {
+            background: var(--remax-red);
+            color: var(--white);
+        }
+
+        .button-primary:hover {
+            background: var(--remax-blue);
+            transform: translateY(-3px);
+        }
+
+        .button-secondary {
+            background: var(--remax-blue);
+            color: var(--white);
+        }
+
+        .button-secondary:hover {
+            background: var(--remax-red);
+        }
+
+        .nav-buttons {
+            text-align: center;
+            margin: 60px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">← REMAX IRON Sistema</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="paquetes.html">Paquetes</a></li>
+                    <li><a href="casos-uso.html">Ver en Acción</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="hero">
+            <h1>📋 Entregables Detallados por Paquete</h1>
+            <p>Clarificación completa de qué recibes exactamente en cada opción</p>
+        </section>
+
+        <section class="intro-box">
+            <h2>🎯 ¿Por Qué Este Documento?</h2>
+            <p><strong>Este documento explica EN DETALLE</strong> qué recibes con cada paquete, sin tecnicismos.</p>
+            <p>Úsalo para entender <strong>exactamente</strong> qué estarás pagando y qué valor obtienes.</p>
+            <p><strong>Objetivo:</strong> Que tomes la decisión correcta con información 100% clara.</p>
+        </section>
+
+        <!-- PAQUETE MVP -->
+        <section class="package-section">
+            <div class="package-header mvp">
+                <div>
+                    <span class="badge badge-recommended">⭐ RECOMENDADO PARA EMPEZAR</span>
+                    <div class="package-title">Paquete MVP</div>
+                    <p style="font-size: 18px; color: #666; margin-top: 10px;">Infraestructura + 1 Módulo</p>
+                </div>
+                <div class="package-price">$2,000</div>
+            </div>
+
+            <div style="text-align: center; margin: 20px 0; font-size: 16px; color: #666;">
+                ⏱️ <strong>Timeline:</strong> 4-6 semanas &nbsp; | &nbsp; 🛠️ <strong>Soporte:</strong> 1 mes post-lanzamiento
+            </div>
+
+            <div class="deliverables-grid">
+                <div class="deliverable-card">
+                    <h3>🏗️ Infraestructura Completa</h3>
+                    <p><strong>Qué es:</strong> La "casa" donde vive todo el sistema.</p>
+                    <ul class="deliverable-list">
+                        <li>Base de datos configurada y funcionando</li>
+                        <li>Dashboard completo para tu equipo</li>
+                        <li>Sistema de usuarios con permisos</li>
+                        <li>Conexiones listas para WhatsApp, Facebook, Instagram</li>
+                        <li>Estructura preparada para más módulos</li>
+                    </ul>
+                    <p style="margin-top: 15px; font-style: italic;">Es como construir la casa completa. Después solo falta "amueblar" con los módulos.</p>
+                </div>
+
+                <div class="deliverable-card">
+                    <h3>🎯 Funciones Generales</h3>
+                    <p><strong>Sin importar qué módulo elijas:</strong></p>
+                    <ul class="deliverable-list">
+                        <li>Chat automático WhatsApp 24/7</li>
+                        <li>Filtrado inteligente (separa serios de curiosos)</li>
+                        <li>Sistema de asignación a agentes</li>
+                        <li>Notificaciones automáticas a tu teléfono</li>
+                        <li>Reportes diarios de actividad</li>
+                        <li>Dashboard en tiempo real</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="module-options">
+                <h3>🧩 Elige 1 Módulo (incluido en el precio)</h3>
+                <div class="modules-grid">
+                    <div class="module-card-small">
+                        <div class="icon">🏠</div>
+                        <h4>Módulo Captación</h4>
+                        <p><strong>Problema:</strong> "Necesito más propiedades"</p>
+                        <p style="margin-top: 10px;"><strong>Solución:</strong> Capta propietarios desde Facebook/Instagram, los filtra automáticamente, valúa sus casas, agenda citas en tu calendario.</p>
+                        <p style="margin-top: 10px; color: var(--green); font-weight: bold;">✓ Recomendado para empezar</p>
+                    </div>
+
+                    <div class="module-card-small">
+                        <div class="icon">👥</div>
+                        <h4>Módulo Reclutamiento</h4>
+                        <p><strong>Problema:</strong> "Necesito más agentes"</p>
+                        <p style="margin-top: 10px;"><strong>Solución:</strong> Capta interesados en ser agente, los filtra, agenda entrevistas solo con candidatos buenos.</p>
+                        <p style="margin-top: 10px; color: #666; font-style: italic;">Ideal si tu prioridad es crecer el equipo</p>
+                    </div>
+
+                    <div class="module-card-small">
+                        <div class="icon">💰</div>
+                        <h4>Módulo Venta</h4>
+                        <p><strong>Problema:</strong> "Pierdo compradores"</p>
+                        <p style="margin-top: 10px;"><strong>Solución:</strong> Capta compradores, les hace preguntas, busca propiedades que coincidan, agenda visitas, da seguimiento constante.</p>
+                        <p style="margin-top: 10px; color: #666; font-style: italic;">Incluye Sistema MATCH básico</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h3>💡 Nuestra Recomendación: Captación</h3>
+                <p>Propiedades = Inventario = Dinero. Es el módulo con ROI más rápido.</p>
+            </div>
+        </section>
+
+        <!-- PAQUETE COMPLETO -->
+        <section class="package-section">
+            <div class="package-header complete">
+                <div>
+                    <span class="badge badge-best">🚀 MÁXIMO VALOR</span>
+                    <div class="package-title">Paquete Completo</div>
+                    <p style="font-size: 18px; color: #666; margin-top: 10px;">Todo Incluido</p>
+                    <p style="font-size: 16px; color: #999; margin-top: 5px; text-decoration: line-through;">Valor: $4,000</p>
+                </div>
+                <div>
+                    <div class="package-price">$3,000</div>
+                    <p style="font-size: 16px; color: #666; text-align: right;">Ahorro: $1,000</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin: 20px 0; font-size: 16px; color: #666;">
+                ⏱️ <strong>Timeline:</strong> 12-16 semanas &nbsp; | &nbsp; 🛠️ <strong>Soporte:</strong> 2 meses post-lanzamiento &nbsp; | &nbsp; 💳 <strong>Pago:</strong> 3 cuotas de $1,000
+            </div>
+
+            <div style="background: linear-gradient(135deg, var(--green) 0%, #00A566 100%); color: white; padding: 20px; border-radius: 12px; text-align: center; margin: 20px 0; font-size: 18px; font-weight: bold;">
+                💰 Pagas $3,000 por un valor de $4,000 (25% de ahorro)
+            </div>
+
+            <div class="deliverables-grid">
+                <div class="deliverable-card">
+                    <h3>🏗️ Infraestructura Completa</h3>
+                    <p><strong>Igual que MVP</strong> (valor $1,000)</p>
+                    <ul class="deliverable-list">
+                        <li>Base de datos</li>
+                        <li>Dashboard</li>
+                        <li>Sistema de usuarios</li>
+                        <li>Integraciones</li>
+                    </ul>
+                </div>
+
+                <div class="deliverable-card">
+                    <h3>🎯 LOS 3 MÓDULOS ACTIVOS</h3>
+                    <p><strong>No eliges, recibes los 3:</strong> (valor $3,000)</p>
+                    <ul class="deliverable-list">
+                        <li>🏠 Módulo Captación completo</li>
+                        <li>👥 Módulo Reclutamiento completo</li>
+                        <li>💰 Módulo Venta completo</li>
+                    </ul>
+                    <p style="margin-top: 15px; font-style: italic;">Todo integrado desde el día 1.</p>
+                </div>
+
+                <div class="deliverable-card">
+                    <h3>🎯 Sistema MATCH</h3>
+                    <p><strong>Qué es:</strong> La función "mágica" para nunca perder un comprador.</p>
+                    <ul class="deliverable-list">
+                        <li>Busca alternativas inteligentes si no tienes lo que buscan</li>
+                        <li>Ofrece opciones similares en zona/precio/características</li>
+                        <li>Explica POR QUÉ la alternativa funciona</li>
+                        <li>Evita que compradores se vayan</li>
+                    </ul>
+                    <p style="margin-top: 15px; font-weight: bold; color: var(--remax-red);">⚠️ Solo incluido en Paquete Completo</p>
+                </div>
+
+                <div class="deliverable-card">
+                    <h3>🏡 "Cuánto Vale Mi Casa"</h3>
+                    <p><strong>Integración con herramienta de valuación:</strong></p>
+                    <ul class="deliverable-list">
+                        <li>Valúa propiedades automáticamente</li>
+                        <li>Genera confianza con propietarios</li>
+                        <li>Aumenta conversiones de captación</li>
+                        <li>Totalmente integrado al flujo</li>
+                    </ul>
+                </div>
+
+                <div class="deliverable-card">
+                    <h3>📅 Calendarios Sincronizados</h3>
+                    <p><strong>Para todo tu equipo:</strong></p>
+                    <ul class="deliverable-list">
+                        <li>Calendarios integrados para cada agente</li>
+                        <li>Agendamiento sin choques de horario</li>
+                        <li>Recordatorios automáticos</li>
+                        <li>Sincronización con Google Calendar/Outlook</li>
+                    </ul>
+                </div>
+
+                <div class="deliverable-card">
+                    <h3>🎁 Extras del Completo</h3>
+                    <p><strong>Beneficios adicionales:</strong></p>
+                    <ul class="deliverable-list">
+                        <li>2 meses de soporte (vs. 1 mes en MVP)</li>
+                        <li>Plan de pagos: 3 cuotas de $1,000</li>
+                        <li>Capacitación extendida</li>
+                        <li>Ahorro de $1,000 vs. compra modular</li>
+                        <li>Todo trabaja integrado desde día 1</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h3>💰 Mejor Inversión a Largo Plazo</h3>
+                <p>Si planeas usar el sistema completo, este paquete te ahorra $1,000 y obtienes más soporte.</p>
+            </div>
+        </section>
+
+        <!-- SOLO INFRAESTRUCTURA -->
+        <section class="package-section">
+            <div class="package-header infra">
+                <div>
+                    <span class="badge badge-warning">⚠️ NO RECOMENDADO</span>
+                    <div class="package-title">Solo Infraestructura</div>
+                    <p style="font-size: 18px; color: #666; margin-top: 10px;">Para Activar Después</p>
+                </div>
+                <div class="package-price" style="color: #666;">$1,000</div>
+            </div>
+
+            <div style="text-align: center; margin: 20px 0; font-size: 16px; color: #666;">
+                ⏱️ <strong>Timeline:</strong> 3-4 semanas &nbsp; | &nbsp; 🛠️ <strong>Soporte:</strong> Básico
+            </div>
+
+            <div style="background: #fff3cd; border-left: 5px solid #ffc107; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <p style="color: #856404; font-weight: bold; margin-bottom: 10px;">⚠️ ADVERTENCIA</p>
+                <p style="color: #856404;">Este paquete NO incluye funcionalidad activa. Es solo la base técnica. No verás valor inmediato.</p>
+            </div>
+
+            <div class="deliverables-grid">
+                <div class="deliverable-card">
+                    <h3>✅ Qué SÍ Incluye</h3>
+                    <ul class="deliverable-list">
+                        <li>Base de datos configurada</li>
+                        <li>Dashboard básico</li>
+                        <li>Sistema de usuarios con login</li>
+                        <li>Estructura preparada para módulos</li>
+                    </ul>
+                </div>
+
+                <div class="deliverable-card">
+                    <h3>❌ Qué NO Incluye</h3>
+                    <ul class="deliverable-list no-list">
+                        <li>Ningún módulo activo</li>
+                        <li>Chat de WhatsApp automático</li>
+                        <li>Filtrado inteligente</li>
+                        <li>Automatizaciones</li>
+                        <li>Valor inmediato</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="background: #f8d7da; border-left: 5px solid #dc3545; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <p style="color: #721c24; font-weight: bold; margin-bottom: 10px;">🚫 Solo Elige Esto Si:</p>
+                <ul style="color: #721c24; margin-left: 20px;">
+                    <li>Ya tienes otros sistemas funcionando</li>
+                    <li>Quieres probar la plataforma vacía primero</li>
+                    <li>Planeas activar módulos en 3-6 meses</li>
+                </ul>
+                <p style="color: #721c24; margin-top: 15px; font-weight: bold;">💡 Nuestro consejo: Mejor empieza con MVP por solo $1,000 más.</p>
+            </div>
+        </section>
+
+        <!-- COSTOS MENSUALES -->
+        <section class="package-section">
+            <h2 style="text-align: center; color: var(--remax-blue); font-size: 36px; margin-bottom: 30px;">💳 Costos Mensuales (Todos los Paquetes)</h2>
+            <p style="text-align: center; font-size: 18px; color: #666; margin-bottom: 30px;">
+                Después de implementar el sistema, estos son los costos recurrentes mensuales:
+            </p>
+
+            <div class="costs-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Servicio</th>
+                            <th>Costo Mensual</th>
+                            <th>Para Qué Es</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>WhatsApp + Automatización</td>
+                            <td style="font-weight: bold;">$45</td>
+                            <td>Chat automático 24/7</td>
+                        </tr>
+                        <tr>
+                            <td>Base de Datos (Supabase Pro)</td>
+                            <td style="font-weight: bold;">$25</td>
+                            <td>Almacenamiento de datos</td>
+                        </tr>
+                        <tr>
+                            <td>Hosting (Vercel)</td>
+                            <td style="font-weight: bold;">$20</td>
+                            <td>Servidor donde vive el sistema</td>
+                        </tr>
+                        <tr>
+                            <td><strong>TOTAL MENSUAL</strong></td>
+                            <td style="font-size: 24px; color: var(--remax-red);"><strong>~$90</strong></td>
+                            <td>Costo operativo total</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="background: #e3f2fd; padding: 20px; border-radius: 12px; margin-top: 20px;">
+                <p style="font-weight: bold; margin-bottom: 10px; color: var(--remax-blue);">💡 Alternativa Premium:</p>
+                <p style="color: #666;">Puedes usar <strong>HighLevel ($100/mes)</strong> en lugar de Como+n8n ($45/mes) para funciones avanzadas de marketing.</p>
+                <p style="color: #666; margin-top: 5px;">Total con HighLevel: $25 + $100 + $20 = <strong>$145/mes</strong></p>
+            </div>
+
+            <div class="highlight-box">
+                <h3>💡 Perspectiva de Valor</h3>
+                <p>Si cierras solo <strong>1 venta extra por mes</strong> gracias al sistema (comisión $5k-$10k), el costo mensual de $90 es insignificante.</p>
+                <p style="margin-top: 10px; font-size: 22px; font-weight: bold;">El sistema se paga solo en el primer mes.</p>
+            </div>
+        </section>
+
+        <!-- RESUMEN COMPARATIVO -->
+        <section class="package-section">
+            <h2 style="text-align: center; color: var(--remax-blue); font-size: 36px; margin-bottom: 30px;">📊 Comparación Final</h2>
+
+            <div class="costs-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Característica</th>
+                            <th>Solo Infra</th>
+                            <th>MVP</th>
+                            <th>Completo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Precio</strong></td>
+                            <td>$1,000</td>
+                            <td>$2,000</td>
+                            <td>$3,000</td>
+                        </tr>
+                        <tr>
+                            <td>Infraestructura</td>
+                            <td style="text-align: center; color: var(--green); font-size: 20px;">✓</td>
+                            <td style="text-align: center; color: var(--green); font-size: 20px;">✓</td>
+                            <td style="text-align: center; color: var(--green); font-size: 20px;">✓</td>
+                        </tr>
+                        <tr>
+                            <td>Módulos activos</td>
+                            <td style="text-align: center; color: #ccc;">0</td>
+                            <td style="text-align: center;">1</td>
+                            <td style="text-align: center;">3</td>
+                        </tr>
+                        <tr>
+                            <td>WhatsApp 24/7</td>
+                            <td style="text-align: center; color: #ccc;">—</td>
+                            <td style="text-align: center; color: var(--green); font-size: 20px;">✓</td>
+                            <td style="text-align: center; color: var(--green); font-size: 20px;">✓</td>
+                        </tr>
+                        <tr>
+                            <td>Sistema MATCH</td>
+                            <td style="text-align: center; color: #ccc;">—</td>
+                            <td style="text-align: center; color: #ccc;">—</td>
+                            <td style="text-align: center; color: var(--green); font-size: 20px;">✓</td>
+                        </tr>
+                        <tr>
+                            <td>"Cuánto Vale Mi Casa"</td>
+                            <td style="text-align: center; color: #ccc;">—</td>
+                            <td style="text-align: center;">Solo si elige Captación</td>
+                            <td style="text-align: center; color: var(--green); font-size: 20px;">✓</td>
+                        </tr>
+                        <tr>
+                            <td>Soporte</td>
+                            <td>Básico</td>
+                            <td>1 mes</td>
+                            <td>2 meses</td>
+                        </tr>
+                        <tr>
+                            <td>Plan de pagos</td>
+                            <td style="text-align: center; color: #ccc;">—</td>
+                            <td style="text-align: center; color: #ccc;">—</td>
+                            <td style="text-align: center; color: var(--green);">3x $1,000</td>
+                        </tr>
+                        <tr>
+                            <td>ROI rápido</td>
+                            <td style="text-align: center; color: #ccc;">—</td>
+                            <td style="text-align: center; color: var(--green); font-size: 20px;">✓</td>
+                            <td style="text-align: center; color: var(--green); font-size: 24px;">✓✓✓</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Timeline</strong></td>
+                            <td>3-4 sem</td>
+                            <td>4-6 sem</td>
+                            <td>12-16 sem</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- RECOMENDACIONES -->
+        <section class="package-section">
+            <h2 style="text-align: center; color: var(--remax-blue); font-size: 36px; margin-bottom: 30px;">🎯 ¿Cuál Elegir?</h2>
+
+            <div class="deliverables-grid">
+                <div class="deliverable-card" style="border-left-color: var(--gold);">
+                    <h3>👉 Elige MVP si:</h3>
+                    <ul class="deliverable-list">
+                        <li>Tu presupuesto es $2,000</li>
+                        <li>Quieres empezar rápido</li>
+                        <li>Tienes clara tu prioridad</li>
+                        <li>Quieres validar antes de invertir más</li>
+                        <li>Prefieres enfocarte en UN problema a la vez</li>
+                    </ul>
+                </div>
+
+                <div class="deliverable-card" style="border-left-color: var(--remax-red);">
+                    <h3>👉 Elige Completo si:</h3>
+                    <ul class="deliverable-list">
+                        <li>Tu presupuesto es $3,000 (o 3x$1,000)</li>
+                        <li>Quieres TODO desde día 1</li>
+                        <li>Buscas mejor ROI a largo plazo</li>
+                        <li>Quieres ahorrar $1,000 vs. compra modular</li>
+                        <li>Necesitas Sistema MATCH incluido</li>
+                    </ul>
+                </div>
+
+                <div class="deliverable-card" style="border-left-color: #666;">
+                    <h3>⚠️ Evita Solo Infraestructura si:</h3>
+                    <ul class="deliverable-list no-list">
+                        <li>Necesitas ver resultados rápido</li>
+                        <li>Esperas que el sistema trabaje YA</li>
+                        <li>No tienes otros sistemas actualmente</li>
+                        <li>Buscas generar ROI inmediato</li>
+                    </ul>
+                    <p style="margin-top: 15px; font-weight: bold; color: var(--remax-red);">Mejor empieza con MVP por solo $1,000 más</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="nav-buttons">
+            <h2 style="color: var(--remax-blue); margin-bottom: 20px;">📞 ¿Listo para Decidir?</h2>
+            <p style="font-size: 18px; color: #666; margin-bottom: 30px;">
+                Revisa los documentos markdown incluidos para más detalles, o contáctanos para aclarar dudas
+            </p>
+            <a href="mailto:contacto@remaxiron.com" class="button button-primary">
+                📧 Contactar Ahora
+            </a>
+            <br><br>
+            <a href="paquetes.html" class="button button-secondary">← Ver Paquetes</a>
+            <a href="index.html" class="button button-secondary">Volver al Inicio</a>
+        </section>
+    </div>
+</body>
+</html>
