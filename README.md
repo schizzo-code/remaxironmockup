@@ -1,70 +1,176 @@
-# Sistema REMAX IRON - Mockup Interactivo
+# RE/MAX IRON - Sistema CRM Mockup
 
-Conjunto de páginas HTML navegables que explican visualmente el sistema propuesto para Diego González de REMAX IRON.
+Mockup completo e interactivo del Sistema CRM para RE/MAX IRON, desarrollado con React + Vite + Tailwind CSS.
 
-## 📁 Archivos Incluidos
+## 🎯 Descripción
 
-- **index.html** - Página principal con overview del sistema
-- **modulo-reclutamiento.html** - Explicación del Módulo de Reclutamiento
-- **modulo-captacion.html** - Explicación del Módulo de Captación
-- **modulo-venta.html** - Explicación del Módulo de Venta
-- **sistema-match.html** - Detalle del Sistema MATCH
-- **onboarding.html** - Proceso de Onboarding Mágico
-- **casos-uso.html** - Ejemplos prácticos paso a paso
-- **paquetes.html** - Opciones de paquetes y precios
+Este es un mockup funcional del sistema descrito en el PRD `PRD_REMAX_IRON_DETALLADO.md`. Incluye:
 
-## 🚀 Cómo Usar
+- ✅ **Dashboard** con KPIs y gráficas interactivas
+- ✅ **Módulo de Reclutamiento** con gestión de candidatos
+- ✅ **Módulo de Captación** con pipeline de propiedades
+- ✅ **Módulo de Venta** con sistema Match
+- ✅ **Gestión de Leads** unificada
+- ✅ **Vista de WhatsApp** con conversaciones simuladas
+- ✅ **Configuración de IA** (editor de prompts)
+- ✅ **Login simulado** con Google OAuth
+- ✅ **100 leads ficticios** distribuidos entre los 3 módulos
+- ✅ **50+ propiedades** en diferentes zonas de Lima
+- ✅ **35 agentes** con estadísticas realistas
+- ✅ **Conversaciones de WhatsApp** simuladas con IA
 
-1. **Abrir en navegador:**
-   - Haz doble click en `index.html` para abrir la página principal
-   - O arrastra cualquier archivo HTML a tu navegador
+## 🚀 Instalación
 
-2. **Navegar:**
-   - Usa el menú superior para moverte entre páginas
-   - Los botones y links te llevan a diferentes secciones
-   - Todos los archivos están interconectados
+### Prerrequisitos
 
-3. **Para presentación en reunión virtual:**
-   - Comparte tu pantalla
-   - Navega por las páginas mientras explicas
-   - Las animaciones se activan al hacer scroll
+- Node.js 18+ o superior
+- npm o yarn
 
-## 🎨 Características
+### Pasos
 
-- ✅ Diseño moderno con colores REMAX (azul oscuro, rojo, gris)
-- ✅ Totalmente navegable sin necesidad de backend
-- ✅ Animaciones suaves al hacer scroll
-- ✅ Responsive (se adapta a diferentes tamaños de pantalla)
-- ✅ Explicaciones sin tecnicismos para Diego
-- ✅ Ejemplos visuales interactivos
-- ✅ Simulaciones de WhatsApp y flujos
+1. **Instalar dependencias**:
+   ```bash
+   npm install
+   ```
 
-## 📋 Orden Sugerido para Presentación
+2. **Iniciar el servidor de desarrollo**:
+   ```bash
+   npm run dev
+   ```
 
-1. **index.html** - Introducción y visión general
-2. **modulo-captacion.html** - MVP recomendado
-3. **sistema-match.html** - Feature destacado
-4. **onboarding.html** - Diferenciador único
-5. **casos-uso.html** - Ver todo en acción
-6. **paquetes.html** - Opciones y precios
+3. **Abrir en el navegador**:
+   El mockup estará disponible en `http://localhost:3000`
 
-## 🎯 Objetivo
+## 🔐 Acceso
 
-Este mockup ayuda a Diego a:
-- Entender **qué hace** el sistema (no cómo está programado)
-- Ver ejemplos concretos de flujos completos
-- Visualizar el valor que recibiría
-- Tomar decisión sobre qué paquete elegir
+Para acceder al mockup, puedes usar cualquiera de estos métodos en la pantalla de login:
 
-## 💡 Notas
+- Click en "**Continuar con Google**" (simulado)
+- Click en "**Ingresar como Demo**"
 
-- No requiere instalación ni servidor
-- Funciona 100% offline
-- Se puede compartir por email (enviar toda la carpeta)
-- Compatible con Chrome, Firefox, Safari, Edge
+Ambos te llevarán al Dashboard principal.
+
+## 📊 Data Ficticia
+
+El mockup incluye data realista para demostración:
+
+### Leads (100 total)
+- **20 leads de Reclutamiento**: Candidatos en diferentes etapas del proceso
+- **30 leads de Captación**: Propietarios interesados en vender
+- **50 leads de Venta**: Compradores en búsqueda de propiedades
+
+### Propiedades (50+)
+- Departamentos, Casas, Lofts, Penthouses, Oficinas
+- Ubicaciones en: San Isidro, Miraflores, Surco, La Molina, Barranco, San Borja
+- Precios desde $120k hasta $1.5M
+- Estados: Disponible, En proceso, Reservado
+
+### Agentes (35)
+- Distribuidos en diferentes zonas de Lima
+- Con estadísticas de ventas realistas
+- Roles: Agente y Agente Senior
+
+### Conversaciones WhatsApp (10)
+- Diferentes flujos: calificación, captación, venta, reclutamiento
+- Mensajes de IA y agentes
+- Estados: activas, cerradas, nuevas
+
+## 🎨 Tecnologías
+
+- **React 18**: Framework principal
+- **Vite**: Build tool
+- **Tailwind CSS**: Estilos y diseño
+- **React Router**: Navegación
+- **Zustand**: Estado global
+- **Recharts**: Gráficas y visualizaciones
+- **Lucide React**: Iconos
+- **date-fns**: Manejo de fechas
+
+## 📁 Estructura del Proyecto
+
+```
+src/
+├── components/
+│   ├── layout/          # Header, Sidebar, Layout
+│   └── ui/              # Button, Card, Badge, etc.
+├── data/
+│   ├── mockLeads.js     # 100 leads ficticios
+│   ├── mockProperties.js# 50+ propiedades
+│   ├── mockAgents.js    # 35 agentes
+│   └── mockConversations.js # Conversaciones WhatsApp
+├── pages/
+│   ├── Dashboard.jsx
+│   ├── Reclutamiento.jsx
+│   ├── Captacion.jsx
+│   ├── Venta.jsx
+│   ├── Leads.jsx
+│   ├── Propiedades.jsx
+│   ├── WhatsApp.jsx
+│   ├── Configuracion.jsx
+│   └── Login.jsx
+├── store/
+│   ├── authStore.js     # Estado de autenticación
+│   └── dataStore.js     # Estado de datos (leads, properties, etc.)
+├── App.jsx              # Routing principal
+└── main.jsx             # Entry point
+```
+
+## 🎨 Diseño
+
+El mockup utiliza la paleta de colores oficial de RE/MAX:
+
+- **RE/MAX Blue**: `#001F3F`
+- **RE/MAX Red**: `#E31937`
+- **RE/MAX Blue Light**: `#003366`
+
+## 📱 Responsive
+
+El mockup está optimizado para:
+- ✅ Desktop (1920px+)
+- ✅ Laptop (1280px - 1920px)
+- ✅ Tablet (768px - 1280px)
+- ✅ Mobile (320px - 768px)
+
+## ⚡ Funcionalidades Interactivas
+
+- ✅ Login simulado con Google OAuth
+- ✅ Navegación completa entre módulos
+- ✅ Gráficas interactivas (hover, tooltips)
+- ✅ Tablas con datos en vivo
+- ✅ Filtros y búsqueda (simulados)
+- ✅ Drag & drop en kanbans (simulado)
+- ✅ Cambio de estados de leads
+- ✅ Vista de conversaciones WhatsApp
+
+## 🔧 Scripts Disponibles
+
+```bash
+# Desarrollo
+npm run dev
+
+# Build para producción
+npm run build
+
+# Preview del build
+npm run preview
+```
+
+## 📝 Notas
+
+- **Este es un mockup**: No incluye backend real ni persistencia de datos
+- **Data en memoria**: Todos los datos están en memoria (se pierden al recargar)
+- **Sin API calls**: Las interacciones son simuladas localmente
+- **Fines demostrativos**: Diseñado para mostrar el flujo y UI del sistema
+
+## 👥 Créditos
+
+**Desarrollado para**: Diego González - RE/MAX IRON
+
+**Equipo de desarrollo**: Javier Cabrera y José Carlos Andonaire
+
+**Versión**: 1.0.0
+**Fecha**: Noviembre 2025
 
 ---
 
-**Preparado para:** Diego González - REMAX IRON
-**Fecha:** Noviembre 2025
-**Por:** Javier Cabrera y José Carlos Andonaire
+Para más información sobre el sistema completo, consulta el archivo `PRD_REMAX_IRON_DETALLADO.md`.
